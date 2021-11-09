@@ -17,5 +17,6 @@
 ### Add images
 
 ### Collaboration
-
+> Twilio Sync
 ### Persistence, persistce the state of the board
+> Using Twilio Sync
