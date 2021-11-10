@@ -21,6 +21,8 @@ In Progress
 ### Persistence, persistce the state of the board
 > Using Twilio Sync, not started yet
 
-Basic funtionality complete, using react & react-draggable
+Basic funtionality complete, using react & react-draggable.
+
+Minimal styling using Tailwind
 
 Will work on Database integration next.
