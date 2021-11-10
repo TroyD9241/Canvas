@@ -28,6 +28,14 @@ const notesReducer = (prevState, action) => {
       console.log('after delete', newState)
       return newState
     }
+    case "UPDATE_POS": {
+      const newState = {
+        ...prevState,
+        notes: [...prevState.notes, action.payload]
+      }
+      console.log('persist', newState)
+      return newState
+    }
     case "CLEAR": {
       const newState = {
         ...prevState,
@@ -54,10 +62,12 @@ function App() {
     const newNote = {
       id: uuid(),
       text: noteInput,
+      defaultPos: { x: 100, y: 0 }
     };
     console.log(newNote);
     dispatch({ type: "ADD_NOTE", payload: newNote });
   };
+
 
   return (
     <>
@@ -74,9 +84,11 @@ function App() {
           ></textArea>
           <button>Add</button>
         </form>
-        {notesState.notes.map(note => {
+        {notesState.notes.map((note, index) => {
           return (
-            <Draggable key={note.id} defaultPosition={note.defaultPos}>
+            <Draggable key={note.id} defaultPosition={note.defaultPos} onStop={(e, note) => {
+              dispatch({ type: "UPDATE_POS", payload: note })
+            }}>
               <div class={"bg-yellow-200 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"}>
                 {note.text}
                 <button onClick={() => dispatch({ type: "DELETE_NOTE", payload: note })}>
